@@ -9,8 +9,10 @@ public class RotationManager : MonoBehaviour
     [SerializeField] private List<GameObject> objectToNotRotate;
     [SerializeField] private Transform player;
 
-    private bool isRotating = false;
+    public bool isRotating = false;
     
+
+
 
     private void Start()
     {
@@ -25,20 +27,21 @@ public class RotationManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && isRotating == false) // Detect player Input
         {
-            StartCoroutine(ReverseScreen(World.transform.rotation.x == 0));
+            StartCoroutine(ReverseScreenCoroutine(World.transform.rotation.x == 0));
         }
 
         // Do the rotation
         if (isRotating) {
-            DisableRigidBodyAndCollider(objectToNotRotate);
+            DisableRigidBodyAndCollider();
         }
            
 
     }
 
-    IEnumerator ReverseScreen(bool Flip)
+    IEnumerator ReverseScreenCoroutine(bool Flip)
     {
         isRotating = true;
+
         Color initialColor = cam.backgroundColor;
         if (Flip)
         {
@@ -69,7 +72,7 @@ public class RotationManager : MonoBehaviour
         }
 
 
-        EnableCollider(objectToNotRotate);
+        EnableCollider();
         isRotating = false;
 
         if(Flip)
@@ -85,24 +88,61 @@ public class RotationManager : MonoBehaviour
         
     }
 
+    IEnumerator ResetScreenRotationCoroutine()
+    {
+        isRotating = true;
+        Color initialColor = cam.backgroundColor;
+        
+        World.transform.rotation = new Quaternion(180, 0, 0, 0);
+        
+
+
+
+
+        for (float i = 0; i <= 100; i++)
+        {
+            
+            cam.backgroundColor = new Color(initialColor.r + (0.46f - initialColor.r) * (i / 100), initialColor.g + (0.46f - initialColor.g) * (i / 100), initialColor.b + (0.46f - initialColor.b) * (i / 100));
+            
+            //World.transform.RotateAround(player.position, Vector3.up, 180f * i / 100f * Time.fixedDeltaTime);
+            World.transform.Rotate(new Vector3(180f * i / 100f * Time.fixedDeltaTime, 0, 0));
+            yield return new WaitForSeconds(0.001f);
+
+        }
+
+
+        
+        isRotating = false;
+
+        
+        cam.backgroundColor = new Color(0.46f, 0.46f, 0.46f);
+        World.transform.rotation = new Quaternion(0, 0, 0, 0);
+        
+
+    }
+
+
 
 
     public void ResetScreenRotation()
     {
-        cam.backgroundColor = new Color(118, 117, 117);
-        EnableCollider(objectToNotRotate);
+
         isRotating = false;
-        if(World.transform.rotation.x != 0)
+        if(!(World.transform.rotation.x == 0 ||  World.transform.rotation.x == -180 || World.transform.rotation.x == 180 || World.transform.rotation.x == -0))
         {
-            StartCoroutine(ReverseScreen(World.transform.rotation.x == 0));
+            
+            StartCoroutine(ResetScreenRotationCoroutine());
         }
         
-        World.transform.rotation = new Quaternion(0, 0, 0, 0);
+        
     }
 
-    private void EnableCollider(List<GameObject> gms)
+    public void EnableCollider()
     {
-        foreach (GameObject gm in gms)
+
+        
+
+        foreach (GameObject gm in objectToNotRotate)
         {
             foreach (Collider2D cl in gm.GetComponentsInChildren<Collider2D>())
             {
@@ -112,11 +152,36 @@ public class RotationManager : MonoBehaviour
             foreach (Collider2D cl in gm.GetComponents<Collider2D>())
             {
                 cl.enabled = true;
+                
             }
 
-            foreach (CircleCollider2D cc in gm.GetComponents<CircleCollider2D>())
+            foreach (CapsuleCollider2D cc in gm.GetComponents<CapsuleCollider2D>())
             {
                 cc.enabled = true;
+            }
+
+            
+            foreach (Rigidbody2D rb in gm.GetComponentsInChildren<Rigidbody2D>())
+            {
+
+                rb.constraints = RigidbodyConstraints2D.None;
+                if(rb.gameObject.tag.Equals("Player"))
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    
+                }
+                rb.AddForce(new Vector2(0, 0));
+
+            }
+
+            foreach (Rigidbody2D rb in gm.GetComponents<Rigidbody2D>())
+            {
+                rb.constraints = RigidbodyConstraints2D.None;
+                if (rb.gameObject.tag.Equals("Player"))
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                }
+                rb.AddForce(new Vector2(0, 0));
             }
 
 
@@ -125,22 +190,22 @@ public class RotationManager : MonoBehaviour
 
     }
 
-    private void DisableRigidBodyAndCollider(List<GameObject> gms)
+    private void DisableRigidBodyAndCollider()
     {
-        foreach (GameObject gm in gms)
+        foreach (GameObject gm in objectToNotRotate)
         {
                       
 
             foreach(Rigidbody2D rb in gm.GetComponentsInChildren<Rigidbody2D>())
             {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = 0;
+                
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
             }
 
             foreach (Rigidbody2D rb in gm.GetComponents<Rigidbody2D>())
             {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = 0;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
             foreach (Collider2D cl in gm.GetComponentsInChildren<Collider2D>())
@@ -153,16 +218,10 @@ public class RotationManager : MonoBehaviour
                 cl.enabled = false;
             }
             
-            foreach (CircleCollider2D cc in gm.GetComponents<CircleCollider2D>())
+            foreach (CapsuleCollider2D cc in gm.GetComponents<CapsuleCollider2D>())
             {
                 cc.enabled = false;
             }
-
-            
-
-
-
-
         }
 
 

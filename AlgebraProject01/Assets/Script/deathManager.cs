@@ -10,6 +10,10 @@ public class deathManager : MonoBehaviour
     private Quaternion respawnPointRotation;
     private SpriteRenderer gameObjectColor;
     private Rigidbody2D rb;
+    private Collider2D[] colliders;
+    private bool isRespawning = false;
+    private RigidbodyConstraints2D contrainsBefore;
+
     // Start is called before the first frame update
 
     private void OnEnable()
@@ -21,6 +25,7 @@ public class deathManager : MonoBehaviour
     void Start()
     {
 
+        colliders = GetComponentsInChildren<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<Transform>();
         gameObjectColor = GetComponent<SpriteRenderer>();
@@ -34,26 +39,44 @@ public class deathManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
+
         if(tr.position.y < -13 || tr.position.y > 13)
         {
-            
-            respawnObject();
-            if(tag.Equals("Player"))
-            {
-                rotationManager.ResetScreenRotation();
-            }
+            killObject();
             
         }
     }
 
-    public void respawnObject()
+    public void killObject()
     {
-        rb.velocity = Vector3.zero;
+        foreach(Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
+        if (isRespawning) return;
+        isRespawning = true;
+        contrainsBefore = rb.constraints;
         
-        rb.angularVelocity = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        
+        StartCoroutine(respawnObject());
+        if (tag.Equals("Player"))
+        {
+            rotationManager.ResetScreenRotation();
+        }
+    }
+
+    public IEnumerator respawnObject()
+    {
+        StartCoroutine(BlinkOnRespawn());
+        yield return new WaitForSeconds(0.5f);
+
+        
         tr.position = respawnPointPosition;
         tr.rotation = respawnPointRotation;
-        StartCoroutine(BlinkOnRespawn());
+        
     }
 
     IEnumerator BlinkOnRespawn()
@@ -72,7 +95,7 @@ public class deathManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
         gameObjectColor.color = new Color(color.r, color.g, color.b,0.5f);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         gameObjectColor.color = new Color(color.r, color.g, color.b,1f);
         yield return new WaitForSeconds(0.1f);
@@ -89,17 +112,16 @@ public class deathManager : MonoBehaviour
         gameObjectColor.color = new Color(color.r, color.g, color.b,1f);
         yield return new WaitForSeconds(0.1f);
 
-        gameObjectColor.color = new Color(color.r, color.g, color.b,0.5f);
-        yield return new WaitForSeconds(0.1f);
+        isRespawning = false;
+        
+        rb.constraints = contrainsBefore;
+        rb.AddForce(new Vector2(0, 0));
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = true;
+        }
+        rotationManager.EnableCollider();
+}
 
-        gameObjectColor.color = new Color(color.r, color.g, color.b,1f);
-        yield return new WaitForSeconds(0.1f);
-
-        gameObjectColor.color = new Color(color.r, color.g, color.b,0.5f);
-        yield return new WaitForSeconds(0.1f);
-
-        gameObjectColor.color = new Color(color.r, color.g, color.b,1f);
-        yield return new WaitForSeconds(0.1f);
-
-    }
+    
 }

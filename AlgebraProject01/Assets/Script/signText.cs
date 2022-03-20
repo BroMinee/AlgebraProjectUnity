@@ -22,7 +22,7 @@ public class signText : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision is BoxCollider2D)
+        if(collision is CapsuleCollider2D)
         {
             if (collision.tag.Equals("Player"))
             {
