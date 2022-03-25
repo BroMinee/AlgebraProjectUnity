@@ -54,7 +54,13 @@ public class ControlerPlayer : MonoBehaviour
         {
             isGrounded = true;
         }
-        
+
+        if (hit != null)
+        {
+            Debug.Log(hit.tag);
+        }
+
+
 
 
         horizontalMouvement = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
