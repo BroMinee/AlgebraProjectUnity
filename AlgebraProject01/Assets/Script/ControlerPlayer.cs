@@ -18,6 +18,7 @@ public class ControlerPlayer : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRendererPlayer;
     [SerializeField] private RotationManager rotationManager;
     public List<backgroundFloorTrigger> backgroundFloorManagerList;
+    private Animator animator;
 
     private float horizontalMouvement;
     private float verticalMouvement;
@@ -26,7 +27,8 @@ public class ControlerPlayer : MonoBehaviour
 
     private void Start()
     {
-        if(groundCheckLeft == null || groundCheckRight == null || rb == null || spriteRendererPlayer == null || rotationManager == null)
+        animator = GetComponentInChildren<Animator>();
+        if (groundCheckLeft == null || groundCheckRight == null || rb == null || spriteRendererPlayer == null || rotationManager == null || animator == null)
         {
             Debug.LogError("SerializeField Missing");
         }
@@ -55,10 +57,7 @@ public class ControlerPlayer : MonoBehaviour
             isGrounded = true;
         }
 
-        if (hit != null)
-        {
-            Debug.Log(hit.tag);
-        }
+        
 
 
 
@@ -84,9 +83,15 @@ public class ControlerPlayer : MonoBehaviour
     {
         if (rotationManager.isRotating) { return; }
 
+
+        
+        animator.SetBool("Jump", rb.velocity.y > 0.3 && !isClimbing);
+
+
         if (Input.GetAxis("Vertical") > 0f && isGrounded && isJumping == false && inRangeToClimb == false)
         {
             isJumping = true;
+            animator.SetBool("Jump", true);
         }
         else if(Input.GetAxis("Vertical") != 0f && inRangeToClimb)
         {
@@ -99,10 +104,14 @@ public class ControlerPlayer : MonoBehaviour
                 }
                 
             }
-            
         }
 
+
         MovePlayer(horizontalMouvement, verticalMouvement);
+
+
+        animator.SetFloat("Speed",Mathf.Abs(rb.velocity.x));
+        animator.SetBool("Fall", rb.velocity.y < -0.3);
 
         
     }

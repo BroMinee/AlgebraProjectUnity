@@ -28,7 +28,7 @@ public class deathManager : MonoBehaviour
         colliders = GetComponentsInChildren<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<Transform>();
-        gameObjectColor = GetComponent<SpriteRenderer>();
+        gameObjectColor = GetComponentInChildren<SpriteRenderer>();
         rotationManager = FindObjectOfType<RotationManager>();
         if(tr == null || respawnPointPosition == null || rotationManager == null || gameObjectColor == null || rb == null || respawnPointRotation == null)
         {
