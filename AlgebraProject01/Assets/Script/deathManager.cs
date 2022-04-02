@@ -36,22 +36,17 @@ public class deathManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-
-        if(tr.position.y < -13 || tr.position.y > 13)
-        {
-            killObject();
-            
-        }
-    }
+    
 
     public void killObject()
     {
-        foreach(Collider2D collider in colliders)
+        /*
+        if(gameState.isRotating == false)
+        {
+            _deathManager.killObject();
+        }
+        */
+        foreach (Collider2D collider in colliders)
         {
             collider.enabled = false;
         }

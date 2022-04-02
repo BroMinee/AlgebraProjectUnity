@@ -149,13 +149,9 @@ public class RotationManager : MonoBehaviour
                 cl.enabled = true;
             }
 
-            foreach (Collider2D cl in gm.GetComponents<Collider2D>())
-            {
-                cl.enabled = true;
-                
-            }
+            
 
-            foreach (CapsuleCollider2D cc in gm.GetComponents<CapsuleCollider2D>())
+            foreach (CapsuleCollider2D cc in gm.GetComponentsInChildren<CapsuleCollider2D>())
             {
                 cc.enabled = true;
             }
@@ -173,18 +169,6 @@ public class RotationManager : MonoBehaviour
                 rb.AddForce(new Vector2(0, 0));
 
             }
-
-            foreach (Rigidbody2D rb in gm.GetComponents<Rigidbody2D>())
-            {
-                rb.constraints = RigidbodyConstraints2D.None;
-                if (rb.gameObject.tag.Equals("Player"))
-                {
-                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                }
-                rb.AddForce(new Vector2(0, 0));
-            }
-
-
         }
 
 
@@ -203,22 +187,16 @@ public class RotationManager : MonoBehaviour
 
             }
 
-            foreach (Rigidbody2D rb in gm.GetComponents<Rigidbody2D>())
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
+            
 
             foreach (Collider2D cl in gm.GetComponentsInChildren<Collider2D>())
             {
                 cl.enabled = false;
             }
             
-            foreach (Collider2D cl in gm.GetComponents<Collider2D>())
-            {
-                cl.enabled = false;
-            }
             
-            foreach (CapsuleCollider2D cc in gm.GetComponents<CapsuleCollider2D>())
+            
+            foreach (CapsuleCollider2D cc in gm.GetComponentsInChildren<CapsuleCollider2D>())
             {
                 cc.enabled = false;
             }
