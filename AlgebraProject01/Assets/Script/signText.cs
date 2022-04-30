@@ -24,7 +24,7 @@ public class signText : MonoBehaviour
     {
         if(collision is CapsuleCollider2D)
         {
-            if (collision.tag.Equals("Player"))
+            if (collision.tag.Equals("Player") && collision.gameObject.name == "Player")
             {
                 UISign.ShowText(text,author);
             }
@@ -33,7 +33,12 @@ public class signText : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        UISign.UnshowText();
+        if (collision.tag.Equals("Player") && collision.gameObject.name == "Player")
+        {
+            UISign.UnshowText();
+        }
+            
+        
     }
 
 }

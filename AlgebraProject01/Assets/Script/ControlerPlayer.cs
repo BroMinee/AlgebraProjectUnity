@@ -11,6 +11,7 @@ public class ControlerPlayer : MonoBehaviour
     private bool isGrounded;
     public bool inRangeToClimb;
     public bool isClimbing;
+    public bool isLookingLeft;
 
     [SerializeField] private Transform groundCheckLeft; // Point1 to check if the player is grounded
     [SerializeField] private Transform groundCheckRight; // Point2 to check if the player is grounded
@@ -19,6 +20,7 @@ public class ControlerPlayer : MonoBehaviour
     [SerializeField] private RotationManager rotationManager; // Rotation Manager of the level
     public List<backgroundFloorTrigger> backgroundFloorManagerList; // The list of every background ground (ladder)
     private Animator animator; // The player animator
+    [SerializeField] AttackManager attackManager;
 
     private float horizontalMouvement;
     private float verticalMouvement;
@@ -28,7 +30,7 @@ public class ControlerPlayer : MonoBehaviour
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        if (groundCheckLeft == null || groundCheckRight == null || rb == null || spriteRendererPlayer == null || rotationManager == null || animator == null)
+        if (groundCheckLeft == null || groundCheckRight == null || rb == null || spriteRendererPlayer == null || rotationManager == null || animator == null || attackManager == null)
         {
             Debug.LogError("SerializeField Missing");
         }
@@ -74,12 +76,14 @@ public class ControlerPlayer : MonoBehaviour
         // == flip the sprite of the player considering his mouvement
         if(horizontalMouvement > 0)
         {
+            
             spriteRendererPlayer.flipX = false;
         }
         else if(horizontalMouvement < 0)
         {
             spriteRendererPlayer.flipX = true;
         }
+        isLookingLeft = spriteRendererPlayer.flipX;
 
 
 
@@ -120,6 +124,11 @@ public class ControlerPlayer : MonoBehaviour
         else
         {
             rb.gravityScale = 1; // the actual disable gravity
+        }
+
+        if(Input.GetAxis("Fire1") != 0f)
+        {
+            attackManager.Attack(this);
         }
 
 

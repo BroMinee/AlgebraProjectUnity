@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AttackManager : MonoBehaviour
 {
 
     [SerializeField] public BoxCollider2D attackRange;
    
 
-    public void Attack(float xPlayer)
+    public void Attack(ControlerPlayer Player)
     {
         
         List<Rigidbody2D>  a=  GetObjectsInBoxCollider(attackRange);
         Debug.Log(a);
         foreach (Rigidbody2D r in a)
         {
-            Debug.Log(r.position.x - xPlayer);
-            if(r.position.x - xPlayer > 0)
+            Debug.Log(Player.isLookingLeft);
+            if(Player.isLookingLeft)
             {
-                r.AddForce(new Vector2(20 , 0));
+                r.AddForce(new Vector2(-10 , 5));
             }
             else
             {
-                r.AddForce(new Vector2(-20, 0));
+                r.AddForce(new Vector2(10, 5));
             }
             
         }
