@@ -11,7 +11,7 @@ public class ControlerPlayer : MonoBehaviour
     private bool isGrounded;
     public bool inRangeToClimb;
     public bool isClimbing;
-    public bool isLookingLeft;
+    
 
     [SerializeField] private Transform groundCheckLeft; // Point1 to check if the player is grounded
     [SerializeField] private Transform groundCheckRight; // Point2 to check if the player is grounded
@@ -83,7 +83,7 @@ public class ControlerPlayer : MonoBehaviour
         {
             spriteRendererPlayer.flipX = true;
         }
-        isLookingLeft = spriteRendererPlayer.flipX;
+        attackManager.changeOffSet(!spriteRendererPlayer.flipX);
 
 
 
@@ -126,17 +126,22 @@ public class ControlerPlayer : MonoBehaviour
             rb.gravityScale = 1; // the actual disable gravity
         }
 
-        if(Input.GetAxis("Fire1") != 0f)
+        if (Input.GetAxis("Fire1") != 0f && isGrounded && attackManager.canAttack) // attack
         {
+            animator.SetBool("Attack", true);
             attackManager.Attack(this);
         }
-
+        else
+        {
+            animator.SetBool("Attack", false);
+        }
 
         // === Do the animation === //
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         animator.SetBool("Fall", rb.velocity.y < -0.7 && !isClimbing); // The player is actually having vertical speed (down)
         animator.SetBool("Jump", rb.velocity.y > 0.5 && !isClimbing); // The player is actually having vertical speed (up)
-        
+
+
     }
 
     private void FixedUpdate()

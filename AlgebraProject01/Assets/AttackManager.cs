@@ -6,56 +6,57 @@ using UnityEngine;
 public class AttackManager : MonoBehaviour
 {
 
-    [SerializeField] public BoxCollider2D attackRange;
-   
+    public float attackRangeX;
+    public float attackRangeY;
+    public bool canAttack;
+
+    public void Start()
+    {
+        canAttack = true;
+    }
+
+    [SerializeField] public Transform attackPoint;
+    [SerializeField] public LayerMask enemyLayer;
+    public Vector3 offSet;
 
     public void Attack(ControlerPlayer Player)
     {
-        
-        List<Rigidbody2D>  a=  GetObjectsInBoxCollider(attackRange);
-        Debug.Log(a);
-        foreach (Rigidbody2D r in a)
+        StartCoroutine(startAttack());
+        Collider2D[] enemy = Physics2D.OverlapBoxAll(attackPoint.position + offSet, new Vector2(attackRangeX, attackRangeY), 0, enemyLayer);
+
+        foreach (Collider2D enemyCollider in enemy)
         {
-            Debug.Log(Player.isLookingLeft);
-            if(Player.isLookingLeft)
-            {
-                r.AddForce(new Vector2(-10 , 5));
-            }
-            else
-            {
-                r.AddForce(new Vector2(10, 5));
-            }
-            
+            Debug.Log("Enemy hit :" + enemyCollider.name);
         }
     }
 
-   
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void changeOffSet(bool isRight)
     {
-        
+        if (isRight)
+        {
+
+            offSet.x = Mathf.Abs(offSet.x);
+        }
+        else
+        {
+
+            offSet.x = Mathf.Abs(offSet.x) * -1;
+        }
     }
 
-    public List<Rigidbody2D> GetObjectsInBoxCollider(Collider2D collider)
+
+    void OnDrawGizmosSelected()
     {
-        List<Rigidbody2D> objectToMove = new List<Rigidbody2D>();
+        Gizmos.DrawWireCube(attackPoint.position + offSet, new Vector3(attackRangeX, attackRangeY, 0));
+    }
 
-
-        Collider2D coll = GetComponent<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D().NoFilter();
-        List<Collider2D> results = new List<Collider2D>();
-        Physics2D.OverlapCollider(coll, filter, results);
-        foreach (var hitCollider in results)
-        {
-            Rigidbody2D rb = hitCollider.gameObject.GetComponent<Rigidbody2D>();
-            if (rb == null)
-                continue;
-
-            objectToMove.Add(rb);
-
-        }
-
-        return objectToMove;
+    IEnumerator startAttack()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(0.75f);
+        canAttack = true;
 
     }
 }
+
+

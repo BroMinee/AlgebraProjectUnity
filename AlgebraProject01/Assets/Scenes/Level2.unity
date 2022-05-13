@@ -156,7 +156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf063239e1f9d3643b7c4f17a2b78716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: {fileID: 1369532069}
+  attackRangeX: 1.2
+  attackRangeY: 0.7
+  canAttack: 0
+  attackPoint: {fileID: 1369532068}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  offSet: {x: 1.2, y: 0, z: 0}
 --- !u!4 &52350444
 Transform:
   m_ObjectHideFlags: 0
@@ -190,7 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inRangeToClimb: 0
   isClimbing: 0
-  isLookingLeft: 0
   groundCheckLeft: {fileID: 1956358062}
   groundCheckRight: {fileID: 1186381263}
   rb: {fileID: 52350446}
@@ -2495,9 +2501,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1369532068}
-  - component: {fileID: 1369532069}
   m_Layer: 0
-  m_Name: AttackHitBox
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2511,38 +2516,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369532067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.905, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 52350444}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1369532069
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369532067}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.3015471, y: -0.10738307}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.6030942, y: 0.78523386}
-  m_EdgeRadius: 0
 --- !u!1001 &1495199234
 PrefabInstance:
   m_ObjectHideFlags: 0
