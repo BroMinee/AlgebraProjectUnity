@@ -156,7 +156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf063239e1f9d3643b7c4f17a2b78716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: {fileID: 1369532069}
+  attackRangeX: 0
+  attackRangeY: 0
+  canAttack: 0
+  attackPoint: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  offSet: {x: 0, y: 0, z: 0}
 --- !u!4 &52350444
 Transform:
   m_ObjectHideFlags: 0
@@ -190,7 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inRangeToClimb: 0
   isClimbing: 0
-  isLookingLeft: 0
   groundCheckLeft: {fileID: 1956358062}
   groundCheckRight: {fileID: 1186381263}
   rb: {fileID: 52350446}
@@ -16876,6 +16882,7 @@ GameObject:
   - component: {fileID: 5009362997012974833}
   - component: {fileID: 5009362997012974835}
   - component: {fileID: 5009362997012974834}
+  - component: {fileID: 5009362997012974840}
   m_Layer: 0
   m_Name: Chest
   m_TagString: NotGround
@@ -16883,6 +16890,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5009362997012974840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009362997012974839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eae70eaffb23f44984927a1be4745d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
 --- !u!1001 &5193792502549889090
 PrefabInstance:
   m_ObjectHideFlags: 0

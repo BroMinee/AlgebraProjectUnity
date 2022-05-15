@@ -134,12 +134,32 @@ public class ControlerPlayer : MonoBehaviour
         else
         {
             animator.SetBool("Attack", false);
+            if (rb.velocity.y < -0.7 && !isClimbing)  // The player is actually having vertical speed (down)
+            {
+                animator.SetBool("Fall", true);
+            }
+            else
+            {
+                animator.SetBool("Fall", false);
+                if(rb.velocity.y > 0.5 && !isClimbing)
+                {
+                    animator.SetBool("Jump", true); // The player is actually having vertical speed (up)
+                }
+                else
+                {
+                    animator.SetBool("Jump", false); // The player is actually having vertical speed (up)
+                    animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+                }
+                
+            }
         }
 
+        
+
         // === Do the animation === //
-        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
-        animator.SetBool("Fall", rb.velocity.y < -0.7 && !isClimbing); // The player is actually having vertical speed (down)
-        animator.SetBool("Jump", rb.velocity.y > 0.5 && !isClimbing); // The player is actually having vertical speed (up)
+        
+        
+        
 
 
     }
