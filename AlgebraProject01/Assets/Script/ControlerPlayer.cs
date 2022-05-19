@@ -11,7 +11,10 @@ public class ControlerPlayer : MonoBehaviour
     private bool isGrounded;
     public bool inRangeToClimb;
     public bool isClimbing;
-    
+
+    public bool facingRight;
+    [SerializeField] public Vector2 attackForce;
+
 
     [SerializeField] private Transform groundCheckLeft; // Point1 to check if the player is grounded
     [SerializeField] private Transform groundCheckRight; // Point2 to check if the player is grounded
@@ -83,7 +86,8 @@ public class ControlerPlayer : MonoBehaviour
         {
             spriteRendererPlayer.flipX = true;
         }
-        attackManager.changeOffSet(!spriteRendererPlayer.flipX);
+        facingRight = !spriteRendererPlayer.flipX;
+        attackManager.changeOffSet(facingRight);
 
 
 

@@ -26,9 +26,33 @@ public class AttackManager : MonoBehaviour
 
         foreach (Collider2D enemyCollider in enemy)
         {
-            Debug.Log("Enemy hit :" + enemyCollider.name);
+            Rigidbody2D rb2D = enemyCollider.GetComponent<Rigidbody2D>();
+            if(rb2D != null)
+            {
+                StartCoroutine(ApplyForce(rb2D, Player));
+                
+                //rb2D.AddForce(new Vector2(Player.transform.localScale.x * Player.attackForce.x, 0));
+            }
         }
     }
+
+    IEnumerator ApplyForce(Rigidbody2D rb2D,ControlerPlayer Player)
+    {
+        
+        yield return new WaitForSeconds(0.2f);
+        if (Player.facingRight)
+        {
+            rb2D.AddForceAtPosition(new Vector2(Player.attackForce.x, Player.attackForce.y), rb2D.gameObject.transform.position - new Vector3(0.9f,0,0));
+            //rb2D.AddForce(new Vector2(Player.attackForce.x, Player.attackForce.y));
+        }
+        else
+        {
+            rb2D.AddForceAtPosition(new Vector2(Player.attackForce.x, Player.attackForce.y), rb2D.gameObject.transform.position - new Vector3(-0.9f, 0, 0));
+            rb2D.AddForce(new Vector2(-Player.attackForce.x, Player.attackForce.y));
+        }
+        Debug.Log("Attacking " + rb2D.name);
+    }
+
 
     public void changeOffSet(bool isRight)
     {
