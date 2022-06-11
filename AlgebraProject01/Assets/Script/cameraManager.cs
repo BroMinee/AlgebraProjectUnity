@@ -9,7 +9,7 @@ public class cameraManager : MonoBehaviour
     
     [SerializeField] private float minPositionUnder;
     [SerializeField] private float maxPositionAbove;
-    private float smoothFactor = 3;
+    private float smoothFactor = 2;
     private Vector3 dragOrigin;
     private GameObject player;
     [SerializeField] private Camera cam;
