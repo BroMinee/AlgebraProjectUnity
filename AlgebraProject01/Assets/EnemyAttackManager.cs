@@ -45,11 +45,7 @@ public class EnemyAttackManager : MonoBehaviour
             canShoot = false;
             StartCoroutine(InitialShoot());
         }
-        else if (isAttacking == true && !isInRange())
-        {
-            isAttacking = false;
-            animator.SetBool("Attack", false);
-        }
+        
     }
 
     IEnumerator InitialShoot()
@@ -61,7 +57,8 @@ public class EnemyAttackManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(Shoot());
         }
-        
+        animator.SetBool("Attack", false);
+
     }
 
     IEnumerator Shoot()
@@ -78,9 +75,14 @@ public class EnemyAttackManager : MonoBehaviour
         else
         {
             rb2d.AddForce(Vector2.left * 800);
-            arrow.transform.rotation = new Quaternion(0, 180, 0, 0);
+            Transform child = arrow.GetComponentInChildren<Transform>();
+            child.transform.rotation = new Quaternion(0, 180, 0, 0);
+            
+            
 
         }
+        isAttacking = false;
+        
         StartCoroutine(ActivateGravity(rb2d));
         Destroy(arrow, 5);
     }
