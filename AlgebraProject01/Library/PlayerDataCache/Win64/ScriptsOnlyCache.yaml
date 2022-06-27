@@ -8,9 +8,8 @@ ScriptsOnlyBuild:
     - cameraManager
     - deathManager
     - killZone
-    - levelManager
-    - signText
     - tempScript
+    - tempScript2
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -105,29 +104,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2928}
     - Class: 114
-      Script: {instanceID: 2954}
-    - Class: 114
       Script: {instanceID: 3116}
     - Class: 114
       Script: {instanceID: 3364}
     - Class: 114
       Script: {instanceID: 3838}
     - Class: 114
-      Script: {instanceID: 3900}
+      Script: {instanceID: 3854}
     - Class: 114
-      Script: {instanceID: 3952}
+      Script: {instanceID: 3902}
     - Class: 114
-      Script: {instanceID: 4378}
+      Script: {instanceID: 3954}
     - Class: 114
-      Script: {instanceID: 4894}
+      Script: {instanceID: 4896}
     - Class: 114
-      Script: {instanceID: 5102}
+      Script: {instanceID: 5104}
     - Class: 114
-      Script: {instanceID: 5292}
+      Script: {instanceID: 5294}
     - Class: 114
-      Script: {instanceID: 5728}
+      Script: {instanceID: 5730}
     - Class: 114
-      Script: {instanceID: 28810}
+      Script: {instanceID: 18704}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -457,6 +454,12 @@ ScriptsOnlyBuild:
     className: killZone
   - hash:
       serializedVersion: 2
+      Hash: 49dea019b57cbdc91caf4f4fba0c4e3e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: tempScript
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -739,11 +742,11 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 49dea019b57cbdc91caf4f4fba0c4e3e
+      Hash: 9437698f314c2bb6686bdf9ca9233423
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: tempScript
+    className: tempScript2
   platform: 19
   scenePathNames:
   - Assets/Scenes/Level 0 submit1.unity
-  playerPath: C:/Users/jules/Documents/GitHub/AlgebraProjectUnity/AlgebraProject01/Build/Submit1/AlgebraProject01.exe
+  playerPath: C:/Users/jules/Documents/GitHub/AlgebraProjectUnity/AlgebraProject01/Build/Submit2/AlgebraProject01.exe

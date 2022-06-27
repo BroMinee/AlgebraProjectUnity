@@ -76,6 +76,7 @@ public class deathManager : MonoBehaviour
 
     IEnumerator BlinkOnRespawn()
     {
+        
         Color color = gameObjectColor.color;
         gameObjectColor.color = new Color(color.r, color.g, color.b,0.5f);
         yield return new WaitForSeconds(0.35f);
@@ -106,7 +107,7 @@ public class deathManager : MonoBehaviour
 
         gameObjectColor.color = new Color(color.r, color.g, color.b,1f);
         yield return new WaitForSeconds(0.1f);
-
+        
         isRespawning = false;
         
         rb.constraints = contrainsBefore;

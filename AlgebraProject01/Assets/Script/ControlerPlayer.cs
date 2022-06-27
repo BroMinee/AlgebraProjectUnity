@@ -158,28 +158,28 @@ public class ControlerPlayer : MonoBehaviour
             }
         }
 
-        
+
 
         // === Do the animation === //
+
         
+
         
-        
+
 
 
     }
 
     private void FixedUpdate()
     {
-
         if (rotationManager.isRotating) { return; } // if the game is rotating the player isn't able to move/jump.
-
 
         // Applied force on the player
         MovePlayer(horizontalMouvement, verticalMouvement);
 
 
-        
-        
+
+
     }
 
 
