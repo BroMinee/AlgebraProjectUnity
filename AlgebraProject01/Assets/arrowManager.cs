@@ -10,8 +10,9 @@ public class arrowManager : MonoBehaviour
         {
             var dm = collision.gameObject.GetComponentInChildren<deathManager>();
             dm.killObject();
+            
         }
-        if(collision.gameObject.tag == "KillZone")
+        if(collision.gameObject.tag == "Ground")
         {
             
             
