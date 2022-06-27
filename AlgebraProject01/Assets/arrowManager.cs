@@ -11,11 +11,11 @@ public class arrowManager : MonoBehaviour
             var dm = collision.gameObject.GetComponentInChildren<deathManager>();
             dm.killObject();
         }
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "KillZone")
         {
             
             
-            Rigidbody2D rb = collision.gameObject.GetComponentInChildren<Rigidbody2D>();
+            Rigidbody2D rb = gameObject.GetComponentInChildren<Rigidbody2D>();
             
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.AddForce(new Vector2(0, 0));
