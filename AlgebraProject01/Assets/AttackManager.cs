@@ -12,9 +12,9 @@ public class AttackManager : MonoBehaviour
 
     public void Start()
     {
-        canAttack = true;
+        canAttack = false;
     }
-
+    [SerializeField] public GameObject myPrefab;
     [SerializeField] public Transform attackPoint;
     [SerializeField] public LayerMask enemyLayer;
     public Vector3 offSet;
@@ -26,14 +26,57 @@ public class AttackManager : MonoBehaviour
 
         foreach (Collider2D enemyCollider in enemy)
         {
-            Rigidbody2D rb2D = enemyCollider.GetComponent<Rigidbody2D>();
-            if(rb2D != null)
+            
+            Rigidbody2D rb2D = enemyCollider.GetComponentInChildren<Rigidbody2D>();
+            
+            if(rb2D == null)
             {
-                StartCoroutine(ApplyForce(rb2D, Player));
+                rb2D = enemyCollider.GetComponentInParent<Rigidbody2D>();
+            }
+
+            if (rb2D != null)
+            {
+                
+                if (rb2D.gameObject.tag == "Arrow")
+                {
+                    
+                    GameObject arrow = Instantiate(myPrefab, attackPoint.position, Quaternion.identity);
+                    Rigidbody2D rb2dD = arrow.GetComponentInChildren<Rigidbody2D>();
+                    if (rb2dD.gameObject.GetComponentInChildren<Transform>().rotation.y == 180)
+                    {
+                        rb2dD.AddForce(Vector2.right * 800);
+                    }
+                    else
+                    {
+                        rb2dD.AddForce(Vector2.left * 800);
+                        Transform child = arrow.GetComponentInChildren<Transform>();
+                        child.transform.rotation = new Quaternion(0, 180, 0, 0);
+
+
+
+                    }
+                    Destroy(rb2D.gameObject);
+
+                    StartCoroutine(ActivateGravity(rb2dD));
+                    Destroy(arrow, 5);
+                }
+                else
+                {
+                    StartCoroutine(ApplyForce(rb2D, Player));
+                }
+                
                 
                 //rb2D.AddForce(new Vector2(Player.transform.localScale.x * Player.attackForce.x, 0));
             }
+           
         }
+    }
+
+    IEnumerator ActivateGravity(Rigidbody2D rb)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        rb.gravityScale = 1;
     }
 
     IEnumerator ApplyForce(Rigidbody2D rb2D,ControlerPlayer Player)
@@ -50,7 +93,8 @@ public class AttackManager : MonoBehaviour
             rb2D.AddForceAtPosition(new Vector2(Player.attackForce.x, Player.attackForce.y), rb2D.gameObject.transform.position - new Vector3(-0.9f, 0, 0));
             rb2D.AddForce(new Vector2(-Player.attackForce.x, Player.attackForce.y));
         }
-        Debug.Log("Attacking " + rb2D.name);
+        
+        
     }
 
 

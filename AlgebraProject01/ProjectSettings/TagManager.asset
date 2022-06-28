@@ -9,6 +9,7 @@ TagManager:
   - UI
   - BackgroundFloor
   - Entity
+  - Arrow
   layers:
   - Default
   - TransparentFX

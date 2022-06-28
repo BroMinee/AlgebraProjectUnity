@@ -283,9 +283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf063239e1f9d3643b7c4f17a2b78716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRangeX: 1.5
+  attackRangeX: 3
   attackRangeY: 1
   canAttack: 0
+  myPrefab: {fileID: 5727660793879186709, guid: ee87057e370a73642adb8c1b7e72c214, type: 3}
   attackPoint: {fileID: 153617066242215388}
   enemyLayer:
     serializedVersion: 2
