@@ -8,16 +8,16 @@ TagManager:
   - NotGround
   - UI
   - BackgroundFloor
-  - KillZone
+  - Entity
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Entity
+  - Ground
   - 
   - 
   - 

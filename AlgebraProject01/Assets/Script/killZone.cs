@@ -11,7 +11,7 @@ public class killZone : MonoBehaviour
         if ((_deathManager = collision.gameObject.GetComponentInChildren<deathManager>()) != null) // this also include main GameObject compenent
         {
             
-            _deathManager.killObject();   // rotation validity is check in killObject         
+            _deathManager.KillInstante();   // rotation validity is check in killObject         
         }
     }
 }

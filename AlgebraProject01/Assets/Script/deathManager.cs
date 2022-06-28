@@ -13,6 +13,7 @@ public class deathManager : MonoBehaviour
     private Collider2D[] colliders;
     private bool isRespawning = false;
     private RigidbodyConstraints2D contrainsBefore;
+    private int life = 3;
 
     // Start is called before the first frame update
 
@@ -36,16 +37,8 @@ public class deathManager : MonoBehaviour
         }
     }
 
-    
-
-    public void killObject()
+    public void KillInstante()
     {
-        /*
-        if(gameState.isRotating == false)
-        {
-            _deathManager.killObject();
-        }
-        */
         foreach (Collider2D collider in colliders)
         {
             collider.enabled = false;
@@ -53,14 +46,47 @@ public class deathManager : MonoBehaviour
         if (isRespawning) return;
         isRespawning = true;
         contrainsBefore = rb.constraints;
-        
+
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        
+
         StartCoroutine(respawnObject());
         if (tag.Equals("Player"))
         {
             rotationManager.ResetScreenRotation();
         }
+    }
+
+    public void damageObject()
+    {
+        if(tag.Equals("Player"))
+        {
+            foreach (Collider2D collider in colliders)
+            {
+                collider.enabled = false;
+            }
+            if (isRespawning) return;
+            isRespawning = true;
+            contrainsBefore = rb.constraints;
+
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            StartCoroutine(respawnObject());
+        }
+
+        else if (tag.Equals("Entity"))
+        {
+            if(life > 1)
+            {
+                // change texture
+                life--;
+            }
+            else if(life == 1)
+            {
+                Destroy(gameObject);
+            }
+            
+        }
+
     }
 
     public IEnumerator respawnObject()

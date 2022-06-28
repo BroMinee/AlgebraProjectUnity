@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAttackManager : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] LayerMask layerMask;
     [SerializeField] private float timeToLoad = 2f;
     [SerializeField] private int numberOfShoot = 1;
     float distance = 15f;
@@ -18,7 +19,7 @@ public class EnemyAttackManager : MonoBehaviour
     {
         if(shootLeft == false)
         {
-            RaycastHit2D hit = Physics2D.Raycast(origin.transform.position, Vector2.right, distance);
+            RaycastHit2D hit = Physics2D.Raycast(origin.transform.position, Vector2.right, distance, layerMask);
             if (hit.collider != null)
             {
                 return hit.collider.gameObject.tag == "Player";
@@ -27,7 +28,7 @@ public class EnemyAttackManager : MonoBehaviour
         }
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(origin.transform.position, Vector2.left, distance);
+            RaycastHit2D hit = Physics2D.Raycast(origin.transform.position, Vector2.left, distance, layerMask);
             if (hit.collider != null)
             {
                 return hit.collider.gameObject.tag == "Player";

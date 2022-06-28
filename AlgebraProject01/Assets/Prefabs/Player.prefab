@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153617064546766267}
   - component: {fileID: 153617064546766268}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InGroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 153617065344377762}
   - component: {fileID: 153617065344377764}
   - component: {fileID: 153617065344377763}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 153617065464407691}
   - component: {fileID: 153617065464407703}
   - component: {fileID: 153617065464407699}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 153617065791769814}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheckerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
@@ -330,7 +330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 153617066242215388}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 153617066628863671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheckerRight
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}

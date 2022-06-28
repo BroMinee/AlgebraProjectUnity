@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 118392402}
   m_Layer: 0
   m_Name: InGroundZone (28)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 172856683}
   m_Layer: 0
   m_Name: InGroundZone (7)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 252560526}
   m_Layer: 0
   m_Name: InGroundZone (23)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 442970166}
   m_Layer: 0
   m_Name: InGroundZone (24)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1271,7 +1271,7 @@ GameObject:
   - component: {fileID: 449379716}
   m_Layer: 0
   m_Name: InGroundZone (4)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1492,7 +1492,7 @@ GameObject:
   - component: {fileID: 541279177}
   m_Layer: 0
   m_Name: InGroundZone (6)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 614693598}
   m_Layer: 0
   m_Name: DeathZone
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1734,7 +1734,7 @@ GameObject:
   - component: {fileID: 695569520}
   m_Layer: 0
   m_Name: InGroundZone1
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1804,7 +1804,7 @@ GameObject:
   - component: {fileID: 706212621}
   m_Layer: 0
   m_Name: InGroundZone (22)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2003,7 +2003,7 @@ GameObject:
   - component: {fileID: 762193475}
   m_Layer: 0
   m_Name: InGroundZone (15)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2073,7 +2073,7 @@ GameObject:
   - component: {fileID: 795180181}
   m_Layer: 0
   m_Name: InGroundZone (26)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2143,7 +2143,7 @@ GameObject:
   - component: {fileID: 803040304}
   m_Layer: 0
   m_Name: InGroundZone
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 934350688}
   m_Layer: 0
   m_Name: InGroundZone (1)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2357,7 +2357,7 @@ GameObject:
   - component: {fileID: 948887690}
   m_Layer: 0
   m_Name: InGroundZone (8)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2598,7 +2598,7 @@ GameObject:
   - component: {fileID: 1223742174}
   m_Layer: 0
   m_Name: InGroundZone (25)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2668,7 +2668,7 @@ GameObject:
   - component: {fileID: 1230997801}
   m_Layer: 0
   m_Name: InGroundZone (27)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3203,7 +3203,7 @@ GameObject:
   - component: {fileID: 1630277847}
   m_Layer: 0
   m_Name: InGroundZone (5)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10367,7 +10367,7 @@ GameObject:
   - component: {fileID: 1775510916}
   m_Layer: 0
   m_Name: InGroundZone (29)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10437,7 +10437,7 @@ GameObject:
   - component: {fileID: 1849477110}
   m_Layer: 0
   m_Name: InGroundZone (2)
-  m_TagString: KillZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

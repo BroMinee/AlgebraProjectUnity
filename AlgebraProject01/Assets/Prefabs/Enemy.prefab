@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7391219634055354087}
-  timeToLoad: 0
-  numberOfShoot: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 136
+  timeToLoad: 1.2
+  numberOfShoot: 1
   origin: {fileID: 8580163673006394505}
   shootLeft: 1
   myPrefab: {fileID: 5727660793879186709, guid: ee87057e370a73642adb8c1b7e72c214, type: 3}
@@ -152,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 25
   m_Sprite: {fileID: -7673816460403332352, guid: 841062ff698754548a8850026c0bf189, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
