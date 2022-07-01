@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class arrowManager : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
+    int enemyHit = 0;
+
+    private void Awake()
+    {
+        FindObjectOfType<AudioManager>().Play("arrow");
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if(collision.gameObject.tag == "Player")
+        if(rb.constraints == RigidbodyConstraints2D.FreezeAll)
+        { return; }
+        if (collision.tag == "Enemy")
+        {
+            enemyHit++;
+            if(enemyHit == 2)
+            {
+                var enemyLife = collision.gameObject.GetComponentInChildren<EnemyAttackManager>();
+                enemyLife.Die();
+            }
+            
+        }
+       
+        else if (collision.gameObject.tag == "Player")
         {
             var dm = collision.gameObject.GetComponentInChildren<deathManager>();
             dm.damageObject();
             
         }
-        if(collision.gameObject.tag == "Ground")
+        else if(collision.gameObject.tag == "Ground")
         {
             
             
@@ -23,7 +42,7 @@ public class arrowManager : MonoBehaviour
             rb.AddForce(new Vector2(0, 0));
 
         }
-        if (collision.gameObject.tag == "Entity")
+        else if (collision.gameObject.tag == "Entity")
         {
             Rigidbody2D rb = gameObject.GetComponentInChildren<Rigidbody2D>();
 

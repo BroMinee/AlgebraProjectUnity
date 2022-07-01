@@ -9,7 +9,9 @@ public class BonusManager : MonoBehaviour
         if(collision.tag == "Player")
         {
             var am =collision.gameObject.GetComponentInChildren<AttackManager>();
+
             am.canAttack = true;
+            FindObjectOfType<AudioManager>().Play("getbonus");
             Destroy(gameObject);
         }
     }

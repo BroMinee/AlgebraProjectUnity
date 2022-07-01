@@ -7,13 +7,32 @@ public class levelManager : MonoBehaviour
 {
     [SerializeField] private int level;
     private bool playerIn;
+    private DialogueManager UISign;
+    GameObject UI;
+
+    private void Start()
+    {
+        UI = GameObject.FindGameObjectWithTag("UI");
+    }
+
     void Update()
     {
         if (!playerIn)
             return;
         if(Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("Level"+level.ToString(),LoadSceneMode.Single);
+            if(level == -1)
+            {
+                UISign = UI.GetComponentInChildren<DialogueManager>();
+                UISign.ShowText("GG your have complete the tutorial (there is nothing more in this build)", "Tutorial");
+            }
+            else
+            {
+                SceneManager.LoadScene("Level" + level.ToString(), LoadSceneMode.Single);
+            }
+            
+            
+            
         }
     }
 

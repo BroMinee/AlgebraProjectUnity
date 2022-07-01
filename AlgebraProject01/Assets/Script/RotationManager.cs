@@ -27,6 +27,7 @@ public class RotationManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && isRotating == false) // Detect player Input
         {
+
             StartCoroutine(ReverseScreenCoroutine(World.transform.rotation.x == 0));
         }
 
@@ -40,6 +41,7 @@ public class RotationManager : MonoBehaviour
 
     IEnumerator ReverseScreenCoroutine(bool Flip)
     {
+        FindObjectOfType<AudioManager>().Play("rotate");
         isRotating = true;
 
         Color initialColor = cam.backgroundColor;
@@ -90,6 +92,7 @@ public class RotationManager : MonoBehaviour
 
     IEnumerator ResetScreenRotationCoroutine()
     {
+        FindObjectOfType<AudioManager>().Play("rotate");
         isRotating = true;
         Color initialColor = cam.backgroundColor;
         

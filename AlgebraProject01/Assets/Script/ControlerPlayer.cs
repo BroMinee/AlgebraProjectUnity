@@ -11,6 +11,9 @@ public class ControlerPlayer : MonoBehaviour
     private bool isGrounded;
     public bool inRangeToClimb;
     public bool isClimbing;
+    [SerializeField] private bool hasDoubleJump = false;
+    [SerializeField] private int nbJump = 0;
+    public bool hasSlowFalling = false;
 
     public bool facingRight;
     [SerializeField] public Vector2 attackForce;
@@ -62,7 +65,12 @@ public class ControlerPlayer : MonoBehaviour
         // == Check if the player is on ground == //
         Collider2D hit = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         if(hit != null && hit.tag != "NotGround" && hit.tag != "BackgroundFloor")
+        {
+            rb.gravityScale = 1;
             isGrounded = true;
+            nbJump = 0;
+        }
+            
         else
             isGrounded = false;
 
@@ -92,15 +100,28 @@ public class ControlerPlayer : MonoBehaviour
 
 
         // === Detection of basic mouvement ===//
-        if (Input.GetAxis("Vertical") > 0f && isGrounded && isJumping == false && inRangeToClimb == false) // jumping
+        if (hasDoubleJump == true && Input.GetKeyDown(KeyCode.W) && isJumping == false && inRangeToClimb == false) // jumping
+        {
+
+            if(nbJump < 2)
+            {
+                isJumping = true;
+                nbJump += 1;
+            }
+            
+        }
+
+
+        else if (hasDoubleJump == false && Input.GetKeyDown(KeyCode.W) && isGrounded && isJumping == false && inRangeToClimb == false) // jumping
         {
             isJumping = true;
         }
 
-        else if (Input.GetAxis("Vertical") != 0f && inRangeToClimb) // climbing
+        else if (Input.GetKeyDown(KeyCode.W) && inRangeToClimb) // climbing
         {
             isClimbing = true;
-            if (Input.GetAxis("Vertical") < 0f) // unclimbing
+            FindObjectOfType<AudioManager>().Play("climb");
+            if (Input.GetKeyDown(KeyCode.S)) // unclimbing
             {
                 foreach (backgroundFloorTrigger bgft in backgroundFloorManagerList)
                 {
@@ -125,21 +146,26 @@ public class ControlerPlayer : MonoBehaviour
                 // the player is on the ladder but not climbing
             }
         }
-        else
-        {
-            rb.gravityScale = 1; // the actual disable gravity
-        }
 
         if (Input.GetAxis("Fire1") != 0f && isGrounded && attackManager.canAttack) // attack
         {
             animator.SetBool("Attack", true);
             attackManager.Attack(this);
+            FindObjectOfType<AudioManager>().Play("sword_attack");
         }
         else
         {
             animator.SetBool("Attack", false);
             if (rb.velocity.y < -0.7 && !isClimbing)  // The player is actually having vertical speed (down)
             {
+                if(hasSlowFalling)
+                {
+                    rb.gravityScale = 0.25f;
+                }
+                else
+                {
+                    rb.gravityScale = 1f;
+                }
                 animator.SetBool("Fall", true);
             }
             else
@@ -209,5 +235,30 @@ public class ControlerPlayer : MonoBehaviour
         }
         
 
+    }
+
+    public void EnableDoubleJump()
+    {
+        hasDoubleJump = true;
+        StartCoroutine(StopDoubleJump());
+    }
+
+    private IEnumerator StopDoubleJump()
+    {
+        yield return new WaitForSeconds(5f);
+        hasDoubleJump = false;
+    }
+
+    public void EnableSlowFalling()
+    {
+        hasSlowFalling = true;
+      
+        StartCoroutine(StopSlowFalling());
+    }
+
+    private IEnumerator StopSlowFalling()
+    {
+        hasSlowFalling = false;
+        yield return new WaitForSeconds(5f);
     }
 }

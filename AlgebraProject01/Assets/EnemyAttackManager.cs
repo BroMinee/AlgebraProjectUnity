@@ -8,11 +8,14 @@ public class EnemyAttackManager : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] private float timeToLoad = 2f;
     [SerializeField] private int numberOfShoot = 1;
+    [SerializeField] private float attackForce = 800;
     float distance = 15f;
     private bool isAttacking = false;
     [SerializeField] private GameObject origin;
     [SerializeField] private bool shootLeft = false;
     private bool canShoot = true;
+    private bool isDead = false;
+    [SerializeField] private Collider2D collider;
 
     [SerializeField] private GameObject myPrefab;
     bool isInRange()
@@ -40,6 +43,8 @@ public class EnemyAttackManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead)
+            return;
         if(canShoot == true && isAttacking == false && isInRange())
         {
             isAttacking= true;
@@ -70,12 +75,12 @@ public class EnemyAttackManager : MonoBehaviour
         Rigidbody2D rb2d = arrow.GetComponentInChildren<Rigidbody2D>();
         if (shootLeft == false)
         {
-            rb2d.AddForce(Vector2.right * 800);
+            rb2d.AddForce(Vector2.right * attackForce);
 
         }
         else
         {
-            rb2d.AddForce(Vector2.left * 800);
+            rb2d.AddForce(Vector2.left * attackForce);
             Transform child = arrow.GetComponentInChildren<Transform>();
             child.transform.rotation = new Quaternion(0, 180, 0, 0);
             
@@ -96,5 +101,13 @@ public class EnemyAttackManager : MonoBehaviour
         rb.gravityScale = 1;
         canShoot = true;
 
+    }
+
+    public void Die()
+    {
+        animator.SetBool("IsDead", true);
+        Destroy(gameObject, 15);
+        collider.enabled = false;
+        isDead = true;
     }
 }

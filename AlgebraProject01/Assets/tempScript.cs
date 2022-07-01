@@ -8,7 +8,7 @@ using System.Text;
 public class tempScript : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
-    [SerializeField] int v;
+    [SerializeField] string msg;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,19 +16,10 @@ public class tempScript : MonoBehaviour
         {
             if (collision.tag.Equals("Player") && collision.gameObject.name == "Player")
             {
-                if(v == 0)
-                {
-                    text.text = "Press 'E' to end the level";
-                }
-                else if (v == 1)
-                {
-                    text.text = "Press 'F' to rotate the world";
-                }
-                else if(v == 2)
-                {
-                    text.text = "Use WASD to move around";
                 
-                }
+                    text.text = msg; //"Press 'E' to end the level";
+                    text.text = msg; //"Press 'F' to rotate the world";
+                    text.text = msg; // "Use WASD to move around";
 
             }
         }
@@ -54,7 +45,7 @@ public class tempScript : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.E))
                 {
-                    if (v == 0)
+                    if (msg == "Press 'E' to end the level")
                     {
                         text.text = "GG";
                     }

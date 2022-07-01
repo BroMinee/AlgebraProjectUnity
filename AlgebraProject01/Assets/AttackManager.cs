@@ -14,6 +14,7 @@ public class AttackManager : MonoBehaviour
     {
         canAttack = false;
     }
+
     [SerializeField] public GameObject myPrefab;
     [SerializeField] public Transform attackPoint;
     [SerializeField] public LayerMask enemyLayer;
@@ -24,9 +25,19 @@ public class AttackManager : MonoBehaviour
         StartCoroutine(startAttack());
         Collider2D[] enemy = Physics2D.OverlapBoxAll(attackPoint.position + offSet, new Vector2(attackRangeX, attackRangeY), 0, enemyLayer);
 
+
         foreach (Collider2D enemyCollider in enemy)
         {
             
+            if(enemyCollider.tag == "Enemy")
+            {
+                Debug.Log("Enemy hit");
+                var enemyLife = enemyCollider.gameObject.GetComponentInChildren<EnemyAttackManager>();
+                FindObjectOfType<AudioManager>().Play("slice");
+                enemyLife.Die();
+            }
+
+
             Rigidbody2D rb2D = enemyCollider.GetComponentInChildren<Rigidbody2D>();
             
             if(rb2D == null)
@@ -36,7 +47,6 @@ public class AttackManager : MonoBehaviour
 
             if (rb2D != null)
             {
-                
                 if (rb2D.gameObject.tag == "Arrow")
                 {
                     
