@@ -6,6 +6,7 @@ public class arrowManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     int enemyHit = 0;
+    public bool isGoingLeft = false;
 
     private void Awake()
     {
@@ -48,7 +49,7 @@ public class arrowManager : MonoBehaviour
 
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.AddForce(new Vector2(0, 0));
-
+            Debug.Log(collision.gameObject.name);
             var dm = collision.gameObject.GetComponentInChildren<deathManager>();
             dm.damageObject();
 

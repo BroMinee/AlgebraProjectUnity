@@ -53,6 +53,7 @@ public class deathManager : MonoBehaviour
         if (tag.Equals("Player"))
         {
             rotationManager.ResetScreenRotation();
+            rotationManager.ReactiveBonus();
         }
     }
 
@@ -143,7 +144,8 @@ public class deathManager : MonoBehaviour
             collider.enabled = true;
         }
         rotationManager.EnableCollider();
-}
+        rotationManager.ReactiveBonus();
+    }
 
     
 }

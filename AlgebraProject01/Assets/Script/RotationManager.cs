@@ -7,6 +7,7 @@ public class RotationManager : MonoBehaviour
     [SerializeField] private GameObject World; // The game TileMap
     [SerializeField] private Camera cam;
     [SerializeField] private List<GameObject> objectToNotRotate;
+    [SerializeField] private List<GameObject> listBonus;
     [SerializeField] private Transform player;
 
     public bool isRotating = false;
@@ -208,4 +209,13 @@ public class RotationManager : MonoBehaviour
 
     }
 
+
+    public void ReactiveBonus()
+    {
+
+        foreach(GameObject gm in listBonus)
+        {
+            gm.SetActive(true);
+        }
+    }
 }

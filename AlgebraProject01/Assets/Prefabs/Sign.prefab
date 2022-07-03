@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186ff37d87160b64ba93d65751d94538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 
-  author: 
+  text: Used WASD to move around
+  author: Tutorial
 --- !u!61 &2714198783703550900
 BoxCollider2D:
   m_ObjectHideFlags: 0

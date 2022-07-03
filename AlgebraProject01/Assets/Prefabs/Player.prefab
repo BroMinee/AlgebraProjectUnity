@@ -234,6 +234,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inRangeToClimb: 0
   isClimbing: 0
+  hasDoubleJump: 0
+  nbJump: 0
+  hasSlowFalling: 0
   facingRight: 0
   attackForce: {x: 25, y: 5}
   groundCheckLeft: {fileID: 153617065791769814}
@@ -291,7 +294,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  offSet: {x: 1.3, y: 0, z: 0}
+  offSet: {x: 5.64, y: 0, z: 0}
 --- !u!1 &153617065791769813
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153617066242215387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.972727, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153617065464407700}

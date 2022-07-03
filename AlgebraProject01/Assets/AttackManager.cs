@@ -52,15 +52,18 @@ public class AttackManager : MonoBehaviour
                     
                     GameObject arrow = Instantiate(myPrefab, attackPoint.position, Quaternion.identity);
                     Rigidbody2D rb2dD = arrow.GetComponentInChildren<Rigidbody2D>();
-                    if (rb2dD.gameObject.GetComponentInChildren<Transform>().rotation.y == 180)
+                    if (rb2D.GetComponentInChildren<arrowManager>().isGoingLeft == true)
                     {
+                        Debug.Log("Going right " + rb2D.GetComponentInChildren<arrowManager>().isGoingLeft);
                         rb2dD.AddForce(Vector2.right * 800);
                     }
                     else
                     {
+                        Debug.Log("Going left " + rb2D.GetComponentInChildren<arrowManager>().isGoingLeft);
                         rb2dD.AddForce(Vector2.left * 800);
                         Transform child = arrow.GetComponentInChildren<Transform>();
                         child.transform.rotation = new Quaternion(0, 180, 0, 0);
+                        arrow.GetComponentInChildren<arrowManager>().isGoingLeft = true;
 
 
 

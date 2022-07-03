@@ -32,7 +32,7 @@ public class ControlerPlayer : MonoBehaviour
     private float verticalMouvement;
 
     private Vector3 velocity = Vector3.zero;
-
+    private BomusSlotManager bomusSlotManager;
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -41,7 +41,13 @@ public class ControlerPlayer : MonoBehaviour
             Debug.LogError("SerializeField Missing");
         }
 
-        
+        bomusSlotManager = FindObjectOfType<BomusSlotManager>();
+        if(bomusSlotManager == null)
+        {
+            Debug.LogError("NO bomus Slot manger found in UI");
+        }
+
+
         foreach (GameObject backgroundfloor in GameObject.FindGameObjectsWithTag("BackgroundFloor"))
         {
             backgroundFloorTrigger bgft = backgroundfloor.GetComponent<backgroundFloorTrigger>();
@@ -239,14 +245,26 @@ public class ControlerPlayer : MonoBehaviour
 
     public void EnableDoubleJump()
     {
+        
         hasDoubleJump = true;
         StartCoroutine(StopDoubleJump());
     }
 
     private IEnumerator StopDoubleJump()
     {
-        yield return new WaitForSeconds(5f);
+        
+        for (int i = 0; i < 15;i++)
+        {
+            bomusSlotManager.SetDoubleJump(1f * i,15);
+            yield return new WaitForSeconds(1f);
+        }
         hasDoubleJump = false;
+        bomusSlotManager.DisableJumpUI();
+    }
+
+    public void HasSword()
+    {
+        bomusSlotManager.SetSword();
     }
 
     public void EnableSlowFalling()
@@ -258,7 +276,13 @@ public class ControlerPlayer : MonoBehaviour
 
     private IEnumerator StopSlowFalling()
     {
+        
+        for (int i = 0; i < 15; i++)
+        {
+            bomusSlotManager.SetSlowFalling(1f * i,15);
+            yield return new WaitForSeconds(1f);
+        }
         hasSlowFalling = false;
-        yield return new WaitForSeconds(5f);
+        bomusSlotManager.DisableFallingUI();
     }
 }

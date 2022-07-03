@@ -83,8 +83,8 @@ public class EnemyAttackManager : MonoBehaviour
             rb2d.AddForce(Vector2.left * attackForce);
             Transform child = arrow.GetComponentInChildren<Transform>();
             child.transform.rotation = new Quaternion(0, 180, 0, 0);
-            
-            
+            arrow.GetComponentInChildren<arrowManager>().isGoingLeft = true;
+
 
         }
         isAttacking = false;

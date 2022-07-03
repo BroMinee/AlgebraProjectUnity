@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2165960453864615795}
   m_Layer: 0
   m_Name: knife
-  m_TagString: Entity
+  m_TagString: NotGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2006d06c433ee24c913ba36df3d507d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickWeapon: 1
+  PickJump: 0
+  PickSlowFalling: 0
 --- !u!95 &2165960453864615794
 Animator:
   serializedVersion: 3
