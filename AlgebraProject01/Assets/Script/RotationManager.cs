@@ -9,7 +9,7 @@ public class RotationManager : MonoBehaviour
     [SerializeField] private List<GameObject> objectToNotRotate;
     [SerializeField] private List<GameObject> listBonus;
     [SerializeField] private Transform player;
-
+    [SerializeField] private bool canRotate = true;
     public bool isRotating = false;
     
 
@@ -26,7 +26,7 @@ public class RotationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && isRotating == false) // Detect player Input
+        if (canRotate == true && Input.GetKeyDown(KeyCode.F) && isRotating == false) // Detect player Input
         {
 
             StartCoroutine(ReverseScreenCoroutine(World.transform.rotation.x == 0));

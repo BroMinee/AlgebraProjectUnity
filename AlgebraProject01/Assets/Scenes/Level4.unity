@@ -159,6 +159,7 @@ MonoBehaviour:
   attackRangeX: 0
   attackRangeY: 0
   canAttack: 0
+  myPrefab: {fileID: 0}
   attackPoint: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -195,8 +196,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d70c7a68510cd4985af20608176a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isJumping: 0
+  isGrounded: 0
   inRangeToClimb: 0
   isClimbing: 0
+  hasDoubleJump: 0
+  nbJump: 0
+  hasSlowFalling: 0
   facingRight: 0
   attackForce: {x: 0, y: 0}
   groundCheckLeft: {fileID: 1956358062}
@@ -1004,7 +1010,9 @@ MonoBehaviour:
   objectToNotRotate:
   - {fileID: 1911027854}
   - {fileID: 52350442}
+  listBonus: []
   player: {fileID: 52350444}
+  canRotate: 1
   isRotating: 0
 --- !u!4 &481099514
 Transform:
@@ -1063,7 +1071,7 @@ MonoBehaviour:
   maxPositionOnRight: 28.41
   minPositionUnder: -4.5
   maxPositionAbove: 4.72
-  cam: {fileID: 0}
+  cam: {fileID: 519420031}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

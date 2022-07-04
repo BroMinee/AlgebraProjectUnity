@@ -7,8 +7,8 @@ public class ControlerPlayer : MonoBehaviour
     private float moveSpeed = 185; // The player speed
     private float jumpForce = 250; // The player jump force
 
-    private bool isJumping;
-    private bool isGrounded;
+    public bool isJumping;
+    public bool isGrounded;
     public bool inRangeToClimb;
     public bool isClimbing;
     [SerializeField] private bool hasDoubleJump = false;
@@ -126,7 +126,6 @@ public class ControlerPlayer : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.W) && inRangeToClimb) // climbing
         {
             isClimbing = true;
-            FindObjectOfType<AudioManager>().Play("climb");
             if (Input.GetKeyDown(KeyCode.S)) // unclimbing
             {
                 foreach (backgroundFloorTrigger bgft in backgroundFloorManagerList)
@@ -151,6 +150,14 @@ public class ControlerPlayer : MonoBehaviour
 
                 // the player is on the ladder but not climbing
             }
+        }
+        else
+        {
+            if (hasSlowFalling == false)
+            {
+                rb.gravityScale = 1;
+            }
+            
         }
 
         if (Input.GetAxis("Fire1") != 0f && isGrounded && attackManager.canAttack) // attack

@@ -50,7 +50,7 @@ public class AttackManager : MonoBehaviour
                 if (rb2D.gameObject.tag == "Arrow")
                 {
                     
-                    GameObject arrow = Instantiate(myPrefab, attackPoint.position, Quaternion.identity);
+                    GameObject arrow = Instantiate(myPrefab, attackPoint.position + offSet, Quaternion.identity);
                     Rigidbody2D rb2dD = arrow.GetComponentInChildren<Rigidbody2D>();
                     if (rb2D.GetComponentInChildren<arrowManager>().isGoingLeft == true)
                     {

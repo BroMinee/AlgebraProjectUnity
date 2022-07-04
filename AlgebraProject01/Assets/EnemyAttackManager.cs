@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAttackManager : MonoBehaviour
 {
+    private bool IsDead = false;
     [SerializeField] Animator animator;
     [SerializeField] LayerMask layerMask;
     [SerializeField] private float timeToLoad = 2f;
@@ -56,12 +57,17 @@ public class EnemyAttackManager : MonoBehaviour
 
     IEnumerator InitialShoot()
     {
+        
         yield return new WaitForSeconds(timeToLoad);
         animator.SetBool("Attack", true);
         for(int i = 0; i < numberOfShoot; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            StartCoroutine(Shoot());
+            if(!isDead)
+            {
+                StartCoroutine(Shoot());
+            }
+            
         }
         animator.SetBool("Attack", false);
 
@@ -105,6 +111,7 @@ public class EnemyAttackManager : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
         animator.SetBool("IsDead", true);
         Destroy(gameObject, 15);
         collider.enabled = false;
