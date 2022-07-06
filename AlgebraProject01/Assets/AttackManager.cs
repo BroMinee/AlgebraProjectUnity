@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 public class AttackManager : MonoBehaviour
@@ -18,20 +20,45 @@ public class AttackManager : MonoBehaviour
     [SerializeField] public GameObject myPrefab;
     [SerializeField] public Transform attackPoint;
     [SerializeField] public LayerMask enemyLayer;
+    [SerializeField] public GameObject attackParticle;
     public Vector3 offSet;
+
+
 
     public void Attack(ControlerPlayer Player)
     {
         StartCoroutine(startAttack());
         Collider2D[] enemy = Physics2D.OverlapBoxAll(attackPoint.position + offSet, new Vector2(attackRangeX, attackRangeY), 0, enemyLayer);
+        
+        for(int i = 0; i < enemy.Length; i++)
+        {
+            for(int j = i; j < enemy.Length;j++)
+            {
+                if (Vector2.Distance(enemy[i].transform.position,Player.transform.position) > Vector2.Distance(enemy[j].transform.position, Player.transform.position))
+                {
+                    (enemy[i],enemy[j]) = (enemy[j],enemy[i]); 
+                }
+            }
+        }
+           
 
-
+            
+        for(int i = 0; i < enemy.Length; i++)
+        {
+            Debug.Log("hit order: " + i + enemy[i].name + Vector2.Distance(Player.transform.position, enemy[i].transform.position));
+        }
         foreach (Collider2D enemyCollider in enemy)
         {
-            
-            if(enemyCollider.tag == "Enemy")
+            if(!(enemyCollider.name.Contains("Box") || enemyCollider.name.Contains("Enemy") || enemyCollider.name.Contains("Arrow")))
             {
-                Debug.Log("Enemy hit");
+                Debug.Log(enemyCollider.name + " don't contrain Box or Enemy or Arrow");
+                continue;
+            }
+            Debug.Log("Hit:" + enemyCollider.name);
+
+            if (enemyCollider.tag == "Enemy")
+            {
+                
                 var enemyLife = enemyCollider.gameObject.GetComponentInChildren<EnemyAttackManager>();
                 FindObjectOfType<AudioManager>().Play("slice");
                 enemyLife.Die();
@@ -64,10 +91,8 @@ public class AttackManager : MonoBehaviour
                         Transform child = arrow.GetComponentInChildren<Transform>();
                         child.transform.rotation = new Quaternion(0, 180, 0, 0);
                         arrow.GetComponentInChildren<arrowManager>().isGoingLeft = true;
-
-
-
                     }
+                    arrow.GetComponentInChildren<arrowManager>().sendByPlayer = true;
                     Destroy(rb2D.gameObject);
 
                     StartCoroutine(ActivateGravity(rb2dD));
@@ -81,6 +106,8 @@ public class AttackManager : MonoBehaviour
                 
                 //rb2D.AddForce(new Vector2(Player.transform.localScale.x * Player.attackForce.x, 0));
             }
+
+            return;
            
         }
     }
@@ -134,10 +161,25 @@ public class AttackManager : MonoBehaviour
     IEnumerator startAttack()
     {
         canAttack = false;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.15f);
+        GameObject dust = Instantiate(attackParticle, attackPoint.position, Quaternion.identity);
+        Quaternion dustRotation = dust.transform.rotation;
+        if(offSet.x < 0)
+        {
+            dustRotation.y = 0;
+        }
+        else
+        {
+            dustRotation.y = 180;
+        }
+        dust.transform.rotation = dustRotation;
+        Destroy(dust, 0.4f);
+        yield return new WaitForSeconds(0.6f);
         canAttack = true;
 
     }
+
+
 }
 
 

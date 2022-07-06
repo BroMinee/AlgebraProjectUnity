@@ -5,8 +5,8 @@ using UnityEngine;
 public class arrowManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    int enemyHit = 0;
     public bool isGoingLeft = false;
+    public bool sendByPlayer = false;
 
     private void Awake()
     {
@@ -18,8 +18,8 @@ public class arrowManager : MonoBehaviour
         { return; }
         if (collision.tag == "Enemy")
         {
-            enemyHit++;
-            if(enemyHit == 2)
+            
+            if(sendByPlayer)
             {
                 var enemyLife = collision.gameObject.GetComponentInChildren<EnemyAttackManager>();
                 enemyLife.Die();

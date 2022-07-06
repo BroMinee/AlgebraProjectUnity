@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        if(m_Text == null ||  author == null || DialogueUI == null)
+        if(DialogueUI == null)
         {
             Debug.LogError("Missing field");
         }

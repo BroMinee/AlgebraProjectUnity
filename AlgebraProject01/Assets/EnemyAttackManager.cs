@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyAttackManager : MonoBehaviour
 {
-    private bool IsDead = false;
     [SerializeField] Animator animator;
     [SerializeField] LayerMask layerMask;
     [SerializeField] private float timeToLoad = 2f;
@@ -15,10 +14,25 @@ public class EnemyAttackManager : MonoBehaviour
     [SerializeField] private GameObject origin;
     [SerializeField] private bool shootLeft = false;
     private bool canShoot = true;
-    private bool isDead = false;
+    public bool isDead = false;
     [SerializeField] private Collider2D collider;
 
     [SerializeField] private GameObject myPrefab;
+
+
+    private void Start()
+    {
+        Quaternion rotation = gameObject.transform.rotation;
+        if (shootLeft)
+        {
+            rotation.y = 180;
+        }
+        else
+        {
+            rotation.y = 0;
+        }
+        gameObject.transform.rotation = rotation;
+    }
     bool isInRange()
     {
         if(shootLeft == false)
@@ -94,6 +108,7 @@ public class EnemyAttackManager : MonoBehaviour
 
         }
         isAttacking = false;
+        arrow.GetComponentInChildren<arrowManager>().sendByPlayer = false;
         
         StartCoroutine(ActivateGravity(rb2d));
         Destroy(arrow, 5);

@@ -123,7 +123,7 @@ public class ControlerPlayer : MonoBehaviour
             isJumping = true;
         }
 
-        else if (Input.GetKeyDown(KeyCode.W) && inRangeToClimb) // climbing
+        else if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) && inRangeToClimb) // climbing
         {
             isClimbing = true;
             if (Input.GetKeyDown(KeyCode.S)) // unclimbing

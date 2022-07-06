@@ -232,6 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d70c7a68510cd4985af20608176a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isJumping: 0
+  isGrounded: 0
   inRangeToClimb: 0
   isClimbing: 0
   hasDoubleJump: 0
@@ -286,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf063239e1f9d3643b7c4f17a2b78716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRangeX: 10
+  attackRangeX: 5
   attackRangeY: 1
   canAttack: 0
   myPrefab: {fileID: 5727660793879186709, guid: ee87057e370a73642adb8c1b7e72c214, type: 3}
@@ -294,7 +296,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  offSet: {x: 5.64, y: 0, z: 0}
+  attackParticle: {fileID: 2307751849752713674, guid: 71515ff4ded21ab44b362a42bf04ec7c, type: 3}
+  offSet: {x: 3.19, y: 0.2, z: 0}
 --- !u!1 &153617065791769813
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class backgroundFloorTrigger : MonoBehaviour
 
     private void Start()
     {
-        if(floorCollider == null)
+        if (floorCollider == null)
         {
             Debug.LogError("Missing componeents");
         }
@@ -25,6 +25,7 @@ public class backgroundFloorTrigger : MonoBehaviour
         
         if (collision.gameObject.tag == "Player")
         {
+            
             DisactiveGround();
         }
     }
