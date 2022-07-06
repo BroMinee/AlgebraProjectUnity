@@ -18,6 +18,8 @@ public class EnemyAttackManager : MonoBehaviour
     [SerializeField] private Collider2D collider;
 
     [SerializeField] private GameObject myPrefab;
+    [SerializeField] private GameObject spottedPrefab;
+    [SerializeField] private Transform spottedPoint;
 
 
     private void Start()
@@ -62,7 +64,10 @@ public class EnemyAttackManager : MonoBehaviour
             return;
         if(canShoot == true && isAttacking == false && isInRange())
         {
-            isAttacking= true;
+            GameObject Spotted = Instantiate(spottedPrefab, spottedPoint.position, Quaternion.identity);
+            Debug.Log("spotted player");
+            Destroy(Spotted, 0.75f);
+            isAttacking = true;
             canShoot = false;
             StartCoroutine(InitialShoot());
         }

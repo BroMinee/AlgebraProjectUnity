@@ -72,6 +72,7 @@ public class deathManager : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             StartCoroutine(respawnObject());
+            rotationManager.ReactiveBonus();
         }
 
         else if (tag.Equals("Entity"))
@@ -144,8 +145,13 @@ public class deathManager : MonoBehaviour
             collider.enabled = true;
         }
         rotationManager.EnableCollider();
-        rotationManager.ReactiveBonus();
+        
     }
 
+
+    public void setRespawnPoint()
+    {
+        respawnPointPosition = transform.position;
+    }
     
 }
