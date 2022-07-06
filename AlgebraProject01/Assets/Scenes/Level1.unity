@@ -1423,7 +1423,7 @@ MonoBehaviour:
   minPositionOnLeft: -10
   maxPositionOnRight: 46.87
   minPositionUnder: -4.85
-  maxPositionAbove: 5.78
+  maxPositionAbove: 13.94
   cam: {fileID: 519420031}
 --- !u!20 &519420031
 Camera:
@@ -1476,7 +1476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.7, y: 13.1, z: -10}
+  m_LocalPosition: {x: 51.7, y: 13.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186ff37d87160b64ba93d65751d94538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Try to jump with 'space'.
+  text: Try to jump with 'W'.
   author: Sign
 --- !u!1 &695569519
 GameObject:
@@ -15443,6 +15443,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 833922760, guid: 1f3f3c8089e1ed34f988f979ee1865a9, type: 3}
+      propertyPath: timeToLoad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 833922760, guid: 1f3f3c8089e1ed34f988f979ee1865a9, type: 3}
+      propertyPath: numberOfShoot
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5125905285084517077, guid: 1f3f3c8089e1ed34f988f979ee1865a9, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
