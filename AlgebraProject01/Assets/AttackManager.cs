@@ -11,10 +11,11 @@ public class AttackManager : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
     public bool canAttack;
+    public bool longRange = false;
 
     public void Start()
     {
-        canAttack = false;
+        canAttack = true;
     }
 
     [SerializeField] public GameObject myPrefab;
@@ -23,7 +24,12 @@ public class AttackManager : MonoBehaviour
     [SerializeField] public GameObject attackParticle;
     public Vector3 offSet;
 
-
+    public void GiveLongRange()
+    {
+        longRange = true;
+        attackRangeX = 10;
+        offSet.x = 5.7f;
+    }
 
     public void Attack(ControlerPlayer Player)
     {
@@ -173,7 +179,15 @@ public class AttackManager : MonoBehaviour
             dustRotation.y = 180;
         }
         dust.transform.rotation = dustRotation;
-        Destroy(dust, 0.4f);
+        if(longRange)
+        {
+            Destroy(dust, 0.6f);
+        }
+        else
+        {
+            Destroy(dust, 0.3f);
+        }
+        
         yield return new WaitForSeconds(0.6f);
         canAttack = true;
 

@@ -16,7 +16,7 @@ public class BonusManager : MonoBehaviour
             if(PickWeapon)
             {
                 am.canAttack = true;
-                playerController.HasSword();
+                playerController.HasLongRangeSword();
             }
             else if(PickJump)
             {

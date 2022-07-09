@@ -51,5 +51,21 @@ public class levelManager : MonoBehaviour
             playerIn = false;
         }
     }
+
+    public void JoinSolo()
+    {
+        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void MysteryGame()
+    {
+        SceneManager.LoadScene("MysteryGame", LoadSceneMode.Single);
+    }
+
 }
 

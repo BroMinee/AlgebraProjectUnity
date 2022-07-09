@@ -10,12 +10,14 @@ public class BomusSlotManager : MonoBehaviour
     [SerializeField] GameObject bonusJumpBoostUI;
     [SerializeField] GameObject bonusSlowFallingUI;
     [SerializeField] GameObject UISword;
+    [SerializeField] GameObject UISwordRange;
 
     private void Awake()
     {
         bonusJumpBoostUI.SetActive(false);
         bonusSlowFallingUI.SetActive(false);
-        UISword.SetActive(false);
+        UISword.SetActive(true);
+        UISwordRange.SetActive(false);
     }
 
     public void SetDoubleJump(float step,int max)
@@ -33,9 +35,10 @@ public class BomusSlotManager : MonoBehaviour
         sliderFalling.value = max - step;
     }
 
-    public void SetSword()
+    public void SetSwordLongRange()
     {
-        UISword.SetActive(true);
+        UISwordRange.SetActive(true);
+        UISword.SetActive(false);
     }
 
     public void DisableFallingUI()

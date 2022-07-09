@@ -15822,10 +15822,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 252507945906050976, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
-      propertyPath: m_margin.z
-      value: 97.83215
-      objectReference: {fileID: 0}
     - target: {fileID: 252507946202606065, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
       propertyPath: m_Name
       value: UI
@@ -15886,20 +15882,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7103569988669273629, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7234651046179238695, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8285314475501440122, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5494139393608215142, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27eaa1bf00fe2264e84184438c5939e6, type: 3}
 --- !u!4 &5009362997012974832
 Transform:

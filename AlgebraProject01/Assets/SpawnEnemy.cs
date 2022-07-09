@@ -13,6 +13,8 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] GameObject EnemyPrefabRight;
     public List<EnemyAttackManager> listEnemyAlive = new List<EnemyAttackManager>();
     [SerializeField] GameObject chest;
+    [SerializeField] GameObject box;
+    [SerializeField] GameObject box2;
 
     public int totalSpawn = 0;
     public int totalKill = 0;
@@ -20,6 +22,8 @@ public class SpawnEnemy : MonoBehaviour
 
     private void Start()
     {
+        box.SetActive(false);
+        box2.SetActive(false);
         chest.SetActive(false); 
         StartCoroutine(StartCountDown());
     }
@@ -53,7 +57,7 @@ public class SpawnEnemy : MonoBehaviour
                     Spawn();
                     Spawn();
                 }
-                if(totalKill == 10)
+                if(totalKill >= 10)
                 {
                     Finish();
                 }
@@ -66,6 +70,8 @@ public class SpawnEnemy : MonoBehaviour
     public void Finish()
     {
         chest.SetActive(true);
+        box.SetActive(true);
+        box2.SetActive(true);
     }
 
     IEnumerator StartCountDown()
@@ -86,6 +92,7 @@ public class SpawnEnemy : MonoBehaviour
         {
             while(totalSpawn < 10)
             {
+                Debug.Log("Error : totalSpawn = " + totalSpawn);
                 Spawn();
             }
         }

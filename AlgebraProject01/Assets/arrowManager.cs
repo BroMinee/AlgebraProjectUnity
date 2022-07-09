@@ -30,7 +30,7 @@ public class arrowManager : MonoBehaviour
         else if (collision.gameObject.tag == "Player")
         {
             var dm = collision.gameObject.GetComponentInChildren<deathManager>();
-            dm.damageObject();
+            dm.KillInstante();
             
         }
         else if(collision.gameObject.tag == "Ground")

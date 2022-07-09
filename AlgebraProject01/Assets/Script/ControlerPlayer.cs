@@ -269,9 +269,10 @@ public class ControlerPlayer : MonoBehaviour
         bomusSlotManager.DisableJumpUI();
     }
 
-    public void HasSword()
+    public void HasLongRangeSword()
     {
-        bomusSlotManager.SetSword();
+        attackManager.GiveLongRange();
+        bomusSlotManager.SetSwordLongRange();
     }
 
     public void EnableSlowFalling()
